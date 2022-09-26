@@ -1,5 +1,9 @@
-from utils.autoload import load_pytorch
-from utils.data import collate_words
+try:
+    from .utils.autoload import load_pytorch
+    from .utils.data import collate_words
+except ImportError:
+    from utils.autoload import load_pytorch
+    from utils.data import collate_words
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt

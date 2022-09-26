@@ -19,7 +19,12 @@ ch.setFormatter(formatter)
 # add the handlers to the loggers
 logger.addHandler(ch)
 
-from morpho_gen import AutoEncoder
+try:
+    from .morpho_gen import AutoEncoder
+    from .utils.logger import append_csv, to_csv
+except ImportError:
+    from morpho_gen import AutoEncoder
+    from utils.logger import append_csv, to_csv
 import torch
 import torch.nn as nn
 from torchmetrics import CharErrorRate, Accuracy, MeanMetric
@@ -27,7 +32,6 @@ import pytorch_lightning as pl
 from pytorch_lightning.utilities.seed import seed_everything
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint, StochasticWeightAveraging
 
-from utils.logger import append_csv, to_csv
 
 from siganalogies import dataset_factory, SIG2016_LANGUAGES, SIG2019_HIGH, CharEncoder
 from torch.utils.data import DataLoader, random_split

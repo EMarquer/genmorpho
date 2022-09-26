@@ -31,3 +31,7 @@ bkp
 figs
 *.bkp*
 *.bkp
+
+# code that should not appear in this branch
+train_autoencoder_ensemble.py
+train_autoencoder_variational.py

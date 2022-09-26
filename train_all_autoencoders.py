@@ -1,4 +1,7 @@
-import train_autoencoder
+try:
+    from . import train_autoencoder
+except ImportError:
+    import train_autoencoder
 from siganalogies import SIG2016_LANGUAGES, SIG2019_HIGH
 
 

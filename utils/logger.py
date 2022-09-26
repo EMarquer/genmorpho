@@ -4,17 +4,6 @@ import os
 import pickle as pkl
 from datetime import datetime as dt
 
-def append_pkl(path, row):
-    if os.path.exists(path):
-        with open(path, "rb") as f: data_dict = pkl.load(f)
-    else:
-        data_dict = dict()
-    timestamp = dt.now().timestamp()
-    while timestamp in data_dict.keys(): timestamp+=0.000001 # failsafe, shouldn't be usefull
-    data_dict[timestamp] = row
-    logging.getLogger(__name__).info(f"writing pickle to {path}")
-    with open(path, "wb") as f: pkl.dump(data_dict, f)
-
 def to_csv(path, row):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", newline="") as f:
