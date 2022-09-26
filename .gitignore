@@ -20,7 +20,7 @@ siganalogies.cfg.json
 generate.py
 
 # Results folders
-logs
+logs*
 lightning_logs
 results
 

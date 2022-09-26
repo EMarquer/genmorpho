@@ -31,7 +31,10 @@ To cite this repository, use the reference of the original article:
 
 - [Table of Contents](#table-of-contents)
 - [GenMorpho model](#genmorpho-model)
+  - [Model architecture](#model-architecture)
+  - [Model files](#model-files)
   - [Hyperparameters and training parameters](#hyperparameters-and-training-parameters)
+  - [Performance of the models](#performance-of-the-models)
 - [Install Instructions](#install-instructions)
   - [Cloning the Repository](#cloning-the-repository)
   - [Installing the Dependencies](#installing-the-dependencies)
@@ -45,6 +48,12 @@ To cite this repository, use the reference of the original article:
   - [`load_lightning`](#load_lightning)
 
 ## GenMorpho model
+### Model architecture
+Please see "Solving Morphological Analogies Through Generation" (Kevin Chan, Shane Peter Kaszefski-Yaschuk, Camille Saran, Esteban Marquer, Miguel Couceiro, 2022) for details.
+
+### Model files
+Currently, we do not chare the picked files of the models (50 models per language for each language is close to 8 GiB)
+
 ### Hyperparameters and training parameters
 Miscellaneous information about the training hyperparameters, which have the name of the arguments in the training script:
 | Hyperparameter | Default value | Description |
@@ -70,6 +79,17 @@ Four hyperparameters separate the models from each other:
 - `dataset` and `language`: the identifiers of the language data the model is trained on;
 - `model_seed_id`: the index of the random seed used to initialize the model, but sadly, due to Cross Entropy being non-deterministic in the current CUDA/PyTorch implementation, this hyperparameters does not guarantee reproducible results;
 - `data_seed_id`: the index of the random seed used to split the vocabulary, it should be enough to maintain a reproducible data splits between runs (but still no reproducible results, sadly).
+
+### Performance of the models
+![figs/char_acc.png](figs/char_acc.png)
+![figs/word_acc.png](figs/word_acc.png)
+![figs/cer.png](figs/cer.png)
+
+How to interpret the results?
+- If the word accuracy is high, then the model predicts correctly most of the unseen words, without any error.
+- If the character accuracy is high, then the model has small mistakes for a lot of words.
+- If the character accuracy is low but the CER is low, than most of the mistakes the model makes can be solved with deletion or insertion of characters.
+- If the the character accuracy is low and the CER high, then the model does not perform well at all (ex: Irish, Japanese, Kanada, Navajo, Greek, or Finnish its 2019 version).
 
 ## Install Instructions
 The following installation instruction are designed for command line on Unix systems. Refer to the instructions for Git and Anaconda on your exploitation system for the corresponding instructions.
@@ -106,7 +126,7 @@ We recommend using Anaconda to isolate your coding environment, avoid conflict, 
 4.  Finally, install the other required libraries:
     ```bash
     # extra conda libs
-    conda install -y --name morpho-analogy -c conda-forge pytorch-lightning torchmetrics pandas seaborn scikit-learn tabulate
+    conda install -y --name morpho-analogy -c conda-forge pytorch-lightning torchmetrics pandas "seaborn>=0.12" scikit-learn tabulate
     ```
 5.  All the following commands assume that you have activated the environment you just created. This can be done with the following command (using our example `morpho-analogy`)
     ```bash

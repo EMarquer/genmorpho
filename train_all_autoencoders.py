@@ -10,7 +10,7 @@ if __name__ == "__main__":
     for language, dataset in excluded_language_dataset:
         language_dataset.remove((language, dataset))
 
-    for data_seed_id in range(10):
+    for data_seed_id in range(5):
         for model_seed_id in range(10):
             for language, dataset in language_dataset:
                 str_args=f"-Vm {model_seed_id} -Vs {data_seed_id} -l {language} -d {dataset} --skip --max_epochs 100"
