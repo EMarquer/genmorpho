@@ -35,6 +35,7 @@ To cite this repository, use the reference of the original article:
   - [Model files](#model-files)
   - [Hyperparameters and training parameters](#hyperparameters-and-training-parameters)
   - [Performance of the models](#performance-of-the-models)
+  - [Performance of the ensemble models](#performance-of-the-ensemble-models)
 - [Install Instructions](#install-instructions)
   - [Cloning the Repository](#cloning-the-repository)
   - [Installing the Dependencies](#installing-the-dependencies)
@@ -87,9 +88,17 @@ Four hyperparameters separate the models from each other:
 
 How to interpret the results?
 - If the word accuracy is high, then the model predicts correctly most of the unseen words, without any error.
-- If the character accuracy is high, then the model has small mistakes for a lot of words.
+<!-- - If the character accuracy is high, then the model has small mistakes for a lot of words.
 - If the character accuracy is low but the CER is low, than most of the mistakes the model makes can be solved with deletion or insertion of characters.
-- If the the character accuracy is low and the CER high, then the model does not perform well at all (ex: Irish, Japanese, Kanada, Navajo, Greek, or Finnish its 2019 version).
+- If the the character accuracy is low and the CER high, then the model does not perform well at all (ex: Irish, Japanese, Kanada, Navajo, Greek, or Finnish its 2019 version). -->
+- If the CER is low, then most of the mistakes the model makes can be solved with deletion or insertion of characters.
+- If the CER is high, then the model does not perform well at all (ex: Irish, Japanese, Kanada, Navajo, Greek, or Finnish its 2019 version).
+
+### Performance of the ensemble models
+![figs/ensemble_word_acc.png](figs/ensemble_word_acc.png)
+![figs/ensemble_cer.png](figs/ensemble_cer.png)
+
+The 
 
 ## Install Instructions
 The following installation instruction are designed for command line on Unix systems. Refer to the instructions for Git and Anaconda on your exploitation system for the corresponding instructions.
