@@ -235,7 +235,7 @@ def add_argparse_args(parser):
     dataset_parser.add_argument('--batch_size', '-b', type=int, default=2048, help='Batch size.')
     dataset_parser.add_argument('--skip', help='Skip if such a model has been trained already. Uses the summary.csv file in the model folder to determine if the model has been trained already on the language.', action='store_true')
 
-    seed_parser = parser.add_argument_group("Dataset arguments")
+    seed_parser = parser.add_argument_group("Random seed arguments")
     seed_parser.add_argument('--split_seed_id', '-Vs', type=int, default=0, help='The model seed.')
     
     return parser, dataset_parser, seed_parser

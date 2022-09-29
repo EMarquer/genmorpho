@@ -5,8 +5,6 @@ PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 #os.chdir(PROJECT_ROOT)
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import siganalogies
-
 def load_model_data(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{PROJECT_ROOT}/logs/ae", map_location="cpu"):
     folder_name = f"{root}/{dataset}/{language}/model{model_seed_id}-data{data_seed_id}"
 

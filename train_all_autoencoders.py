@@ -16,7 +16,7 @@ if __name__ == "__main__":
     for data_seed_id in range(5):
         for model_seed_id in range(10):
             for language, dataset in language_dataset:
-                str_args=f"-Vm {model_seed_id} -Vs {data_seed_id} -l {language} -d {dataset} --skip --max_epochs 100"
+                str_args=f"-Vm {model_seed_id} -Vs {data_seed_id} -l {language} -d {dataset} --skip --max_epochs 100 --gpus=-1"
                 print(f"Running for `{str_args}`")
 
                 # argument parsing

@@ -55,6 +55,9 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.savefig("figs/word_acc.png")
 
+    # Word acc as table
+    #print(full_df[["Language", "Dataset", "gen_max_word_accuracy"]].groupby(["Language", "Dataset"]).mean().sort_values("gen_max_word_accuracy"))
+
 
 # plot ensemble autoencoder
 if __name__ == "__main__":
