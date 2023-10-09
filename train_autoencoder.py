@@ -64,11 +64,11 @@ class LightningAutoEncoder(pl.LightningModule):
         self.tf_cer = CharErrorRate()
         self.gen_max_cer = CharErrorRate()
         self.gen_rand_cer = CharErrorRate()
-        self.tf_char_accuracy = Accuracy(num_classes=len(self.encoder.id_to_char), ignore_index=self.encoder.PAD_ID, multiclass=True, mdmc_average='samplewise')
+        self.tf_char_accuracy = Accuracy(task="multiclass", num_classes=len(self.encoder.id_to_char), ignore_index=self.encoder.PAD_ID, multiclass=True, mdmc_average='samplewise')
         self.tf_word_accuracy = MeanMetric()
-        self.gen_max_char_accuracy = Accuracy(num_classes=len(self.encoder.id_to_char), ignore_index=self.encoder.PAD_ID, multiclass=True, mdmc_average='samplewise')
+        self.gen_max_char_accuracy = Accuracy(task="multiclass", num_classes=len(self.encoder.id_to_char), ignore_index=self.encoder.PAD_ID, multiclass=True, mdmc_average='samplewise')
         self.gen_max_word_accuracy = MeanMetric()
-        self.gen_rand_char_accuracy = Accuracy(num_classes=len(self.encoder.id_to_char), ignore_index=self.encoder.PAD_ID, multiclass=True, mdmc_average='samplewise')
+        self.gen_rand_char_accuracy = Accuracy(task="multiclass", num_classes=len(self.encoder.id_to_char), ignore_index=self.encoder.PAD_ID, multiclass=True, mdmc_average='samplewise')
         self.gen_rand_word_accuracy = MeanMetric()
 
     def configure_optimizers(self):

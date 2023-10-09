@@ -1,9 +1,9 @@
 import csv
 import os, sys
 
-PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 #os.chdir(PROJECT_ROOT)
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(PROJECT_ROOT)
 
 def load_model_data(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{PROJECT_ROOT}/logs/ae", map_location="cpu"):
     folder_name = f"{root}/{dataset}/{language}/model{model_seed_id}-data{data_seed_id}"
@@ -19,7 +19,10 @@ def load_model_data(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{
     best_model = dict_data["best_model"]
 
     import torch
-    model_data = torch.load(best_model, map_location=map_location)
+    try:
+        model_data = torch.load(best_model, map_location=map_location)
+    except FileNotFoundError:
+        model_data = torch.load(os.path.join(PROJECT_ROOT, best_model), map_location=map_location)
     model_data["training_data"] = dict_data
     return model_data
 
