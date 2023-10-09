@@ -1,1 +1,1 @@
-from .utils.autoload import load_lightning, load_pytorch
+from .utils.autoload import load_lightning, load_genmorpho

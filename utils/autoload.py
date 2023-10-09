@@ -26,7 +26,7 @@ def load_model_data(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{
     model_data["training_data"] = dict_data
     return model_data
 
-def load_pytorch(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{PROJECT_ROOT}/logs/ae", map_location="cpu"):
+def load_genmorpho(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{PROJECT_ROOT}/logs/ae", map_location="cpu"):
     model_data = load_model_data(dataset, language, model_seed_id=model_seed_id, data_seed_id=data_seed_id, root=root, map_location=map_location)
     encoder = model_data["hyper_parameters"].pop("encoder")
 
@@ -52,7 +52,7 @@ def load_lightning(dataset, language, model_seed_id=0, data_seed_id=0, root=f"{P
 if __name__ == "__main__":
     #load_pytorch("2016", "finnish")
     from utils.data import collate_words
-    ae, char_encoder = load_pytorch(dataset="2019", language="english", model_seed_id=0, data_seed_id=0)
+    ae, char_encoder = load_genmorpho(dataset="2019", language="english", model_seed_id=0, data_seed_id=0)
     word = "word"
     encoded_word = char_encoder.encode(word)
     encoded_word = collate_words([encoded_word],

@@ -1,8 +1,8 @@
 try:
-    from .utils.autoload import load_pytorch
+    from .utils.autoload import load_genmorpho
     from .utils.data import collate_words
 except ImportError:
-    from utils.autoload import load_pytorch
+    from utils.autoload import load_genmorpho
     from utils.data import collate_words
 import pandas as pd
 import seaborn as sns
